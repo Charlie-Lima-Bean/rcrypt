@@ -1,5 +1,7 @@
+#!/bin/sh
 
 keyname=$1
+mkdir -p /etc/rcrypt
 if test -f /etc/rcrypt/$keyname; then
   echo "already have a key for $keyname. updating tpm binding"
 else

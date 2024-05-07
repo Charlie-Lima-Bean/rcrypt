@@ -1,3 +1,5 @@
+#!/bin/sh
+
 if [ "$#" -ne 2 ]; then
     echo "src dev"
     exit 1

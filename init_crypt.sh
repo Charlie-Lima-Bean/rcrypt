@@ -1,3 +1,5 @@
+#!/bin/sh
+
 if [ "$#" -ne 3 ]; then
     echo "destpart cryptname keyname"
     exit 1
