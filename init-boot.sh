@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# clones the partition layout of a "known good" boot drive and adds part 2 to the proxmox boot manager
+# @TODO probably needs to clone part 1 too?
+
 if [ "$#" -ne 2 ]; then
     echo "src dev"
     exit 1

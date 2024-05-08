@@ -1,6 +1,10 @@
+#!/bin/sh
+
 echo "rcrypt hook running..."
 mkdir -p ${DESTDIR}/rcrypt/bin
-cp /etc/rcrypt/*.tpmpub "${DESTDIR}/rcrypt/"
+mkdir -p ${DESTDIR}/rcrypt/hashes
+
+cp /etc/rcrypt/hashes/.tpmpub "${DESTDIR}/rcrypt/hashes"
 cp /etc/rcrypt/rtab.conf "${DESTDIR}/rcrypt"
 cp -r /etc/rcrypt/initramfs-util/* "${DESTDIR}/rcrypt/bin"
 exit 0
