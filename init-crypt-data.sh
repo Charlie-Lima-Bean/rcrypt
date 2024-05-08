@@ -19,12 +19,7 @@ echo "setting up $destpart as $cryptname..."
 cryptsetup -v -c aes-xts-plain64 -h sha512 -s 512 luksFormat $destpart /etc/rcrypt/$keyname --batch-mode
 cryptsetup luksAddKey $destpart --key-file /etc/rcrypt/keys/$keyname
 blkid | grep -i "$destpart"
-# cryptenroll refuses to read the tpm properly during initramfs
-# systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs="7+8" --wipe-slot=4 $destpart 
-# clevis works, but it seems that successive clevis-binds interfere with each other
-# clevis-luks-bind -d $destpart -k /etc/rcrypt/$keyname -s 3 tpm2 '{"pcr_bank":"sha256","pcr_ids":"7,8"}'
-echo "$cryptname UUID=$(blkid -o value -s UUID $destpart) /etc/rcrypt/keys/$keyname discard" >> /etc/crypttab
-# echo "$cryptname $(blkid -o value -s UUID $destpart) $keyname" >> /etc/rcrypt/rtab.conf
+echo "$cryptname $(blkid -o value -s UUID $destpart) /etc/rcrypt/keys/$keyname discard" >> /etc/crypttab
 cryptsetup luksOpen --key-file /etc/rcrypt/keys/$keyname $destpart $cryptname
 btrfs device add /dev/mapper/$cryptname /mnt/data
 

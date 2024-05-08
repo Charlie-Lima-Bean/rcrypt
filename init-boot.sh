@@ -15,9 +15,10 @@ partprobe
 sync #idk just put these everywhere
 sgdisk -G $destdev
 sync
+sleep 5 # os needs a moment to catch up - boot-tool runs into issues if we go too fast
 partprobe
 sync
-proxmox-boot-tool format ${destdev}2 --force
+proxmox-boot-tool format ${destdev}2 --force 
 sync
 proxmox-boot-tool init ${destdev}2 grub
 sync

@@ -1,10 +1,11 @@
 #!/bin/sh
 
 echo "rcrypt hook running..."
+rm ${DESTDIR}/rcrypt -r # apparently these are sticky?
 mkdir -p ${DESTDIR}/rcrypt/bin
 mkdir -p ${DESTDIR}/rcrypt/hashes
 
-cp /etc/rcrypt/hashes/.tpmpub "${DESTDIR}/rcrypt/hashes"
+cp /etc/rcrypt/hashes/*.tpmpub "${DESTDIR}/rcrypt/hashes"
 cp /etc/rcrypt/rtab.conf "${DESTDIR}/rcrypt"
 cp -r /etc/rcrypt/initramfs-util/* "${DESTDIR}/rcrypt/bin"
 exit 0

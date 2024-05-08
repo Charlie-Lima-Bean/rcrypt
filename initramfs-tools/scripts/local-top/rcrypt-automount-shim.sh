@@ -15,5 +15,5 @@ case "$1" in
 esac
 # -------
 
-/rcrypt/bin/rcrypt-automount.sh
+/rcrypt/bin/rcrypt-automount.sh /
 exit 0
