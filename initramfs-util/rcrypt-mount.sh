@@ -1,3 +1,5 @@
+#!/bin/sh
+
 #backup script if the tpm gets shuffled
 echo "passkey to use:"
 read -s $pw

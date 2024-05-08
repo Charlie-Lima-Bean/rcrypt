@@ -24,7 +24,7 @@ blkid | grep -i "$destpart"
 # clevis works, but it seems that successive clevis-binds interfere with each other
 # clevis-luks-bind -d $destpart -k /etc/rcrypt/$keyname -s 3 tpm2 '{"pcr_bank":"sha256","pcr_ids":"7,8"}'
 # echo "$cryptname UUID=$(blkid -o value -s UUID $destpart) none tpm2-device=auto,discard" >> /etc/crypttab
-echo "$cryptname UUID=$(blkid -o value -s UUID $destpart) $keyname" >> /etc/rcrypt/rtab.conf
+echo "$cryptname $(blkid -o value -s UUID $destpart) $keyname" >> /etc/rcrypt/rtab.conf
 cryptsetup luksOpen --key-file /etc/rcrypt/$keyname $destpart $cryptname
 btrfs device add /dev/mapper/$cryptname /
 #this script will probable be run in batches

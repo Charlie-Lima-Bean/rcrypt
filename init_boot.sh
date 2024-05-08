@@ -12,10 +12,14 @@ partprobe
 sync #idk just put these everywhere
 sgdisk -G $destdev
 sync
-proxmox-boot-tool format ${destdev}2
+partprobe
+sync
+proxmox-boot-tool format ${destdev}2 --force
 sync
 proxmox-boot-tool init ${destdev}2 grub
 sync
+proxmox-boot-tool status
+
 # purge the missing
 # while read -r uuid; do
 #     $(blkid -o uuid -s $uuid)

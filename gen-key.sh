@@ -1,4 +1,8 @@
 #!/bin/sh
+if [ "$#" -ne 1 ]; then
+    echo "keyname"
+    exit 1
+fi
 
 keyname=$1
 mkdir -p /etc/rcrypt
