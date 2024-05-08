@@ -5,8 +5,9 @@ Use at your own risk. Scripts have no safeguards against accidental damage. I co
 Seals keys against tpm2 regisers, which are used to decrypt drives prior to mounting your root fs
 
 # Why are we here?
+- tl;dr proxmox raid boot, systemd-cryptenroll and clevis don't quite work
 - You are on proxmox and would like to leverage proxmox-boot-tool, which does not play nice with dracut
-- systemd-cryptenroll
+- systemd-cryptenroll doesn't work for some reason
     - crypttab is _only_ imported to initramfs if the rootfs is in there.
         - if you're using btrfs and swapping your original drives for encrypted volumwa, this is a complication
             - "rootfs" is not actually encrypted
@@ -15,10 +16,10 @@ Seals keys against tpm2 regisers, which are used to decrypt drives prior to moun
         - this can be bypassed by adding a hook to initramfs-tools to manually copy the crypttab in
     - On bookworm stable, tpm2-device=auto as a crypttab option is not recognized by the initramfs hook
         - this fix can be backported manually
-    - Having got this far, systemd-cryptsetup consistently gets in a tpm2 read error at the initramfs stage, resulting in a passky prompt.
+    - Having got this far, systemd-cryptsetup consistently gets a tpm2 read error at the initramfs stage, resulting in a passky prompt.
         - crypttab with tpm2-device=auto works fine _after_ kernel load though.
-- clevis-luks-bind
-    - is not happy if you bind multiple drives. seems odd, idk.
+- clevis-luks-bind also doesn't work
+    - it generally was not happy after multiple binds, which is should actually support.
 
 # "threat model"
 - The usual tpm caveats. This is fundamentally less secure than prompting for passkeys, but lazier.
