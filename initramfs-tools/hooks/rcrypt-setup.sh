@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 echo "rcrypt hook running..."
 rm ${DESTDIR}/rcrypt -r # apparently these are sticky?

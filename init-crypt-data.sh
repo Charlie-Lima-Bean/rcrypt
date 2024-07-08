@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 if [ "$#" -ne 4 ]; then
     echo "destpart cryptname keyname btrfs-mountpoint"

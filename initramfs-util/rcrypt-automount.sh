@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 prefix=$1
 
 while read -r devname uuid keyname ignore; do

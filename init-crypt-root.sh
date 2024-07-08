@@ -1,18 +1,35 @@
-#!/bin/sh
+#!/bin/bash
 
 if [ "$#" -ne 3 ]; then
     echo "dest cryptname keyname"
     exit 1
 fi
 
-dest=${1}3
+dest=${1}
 cryptname=$2
 keyname=$3
+partnum="unknown"
+re_scsi='/dev/sd[a-z]+'
+re_nvme='/dev/nvme[0-9]+n[0-9]+'
+
+if [[ "$dest" =~ $re_scsi ]]; then
+    partnum="3"
+fi
+if [[ "$dest" =~ $re_nvme ]]; then
+    partnum="p3"
+fi
+
+if [[ $partnum == "unknown" ]]; then
+  echo "unknown device type, can't format partition name"
+  exit 1
+fi
 
 if ! test -f /etc/rcrypt/keys/$keyname; then
   echo "/etc/rcrypt/keys/$keyname" not found
   exit 1
 fi
+
+dest="$dest$partnum"
 
 echo "setting up $dest as $cryptname..."
 # will prompt for master passphrase

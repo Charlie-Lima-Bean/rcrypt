@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 rm /etc/initramfs-tools/hooks/rcrypt-setup.sh
 rm /etc/initramfs-tools/scripts/local-top/rcrypt-automount-shim.sh

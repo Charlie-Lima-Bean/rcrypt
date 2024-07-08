@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # clones the partition layout of a "known good" boot drive and adds part 2 to the proxmox boot manager
 # @TODO probably needs to clone part 1 too?

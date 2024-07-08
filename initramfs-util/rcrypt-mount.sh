@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #backup script if the tpm gets shuffled
 read "passkey to use:" -s pw
